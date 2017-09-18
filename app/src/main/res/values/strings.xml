@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">WeatherAppMVP</string>
+    <string name="hint_type_location">Type location...</string>
+    <string name="location">Location:</string>
+    <string name="current_temperature">Current temperature:</string>
+    <string name="max_temperature">Max. temperature:</string>
+    <string name="min_temperature">Min. temperature:</string>
+    <string name="wind_speed">Wind speed:</string>
+    <string name="show_temperature">Show temperature</string>
 </resources>

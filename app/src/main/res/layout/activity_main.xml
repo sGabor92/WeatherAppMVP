@@ -8,20 +8,31 @@
     android:padding="20dp"
     tools:context="hu.webandmore.weatherappmvp.ui.main.MainActivity">
 
-    <EditText
-        android:id="@+id/typeLocation"
-        android:layout_width="200dp"
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:hint="@string/hint_type_location" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical"
+        app:cardElevation="5dp">
+
+        <fragment
+            android:id="@+id/place_autocomplete_fragment"
+            android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </android.support.v7.widget.CardView>
 
     <Button
         android:id="@+id/showWeatherBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/show_temperature"
         android:layout_gravity="center_horizontal"
-        android:onClick="getWeatherData"/>
+        android:onClick="getWeatherData"
+        android:text="@string/show_temperature" />
 
     <android.support.v7.widget.CardView
         android:id="@+id/weatherData"
@@ -31,9 +42,10 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
         android:orientation="vertical"
-        app:cardElevation="10dp"
         android:visibility="gone"
-        >
+        app:cardElevation="10dp"
+        app:contentPaddingBottom="10dp"
+        app:contentPaddingTop="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -62,8 +74,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/colorBlack"
-                    android:textSize="16sp"
-                    />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -88,8 +99,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/colorBlack"
-                    android:textSize="16sp"
-                    />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -114,8 +124,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/colorBlack"
-                    android:textSize="16sp"
-                    />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -140,14 +149,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/colorBlack"
-                    android:textSize="16sp"
-                    />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -165,8 +174,31 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/colorBlack"
-                    android:textSize="16sp"
-                    />
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/descText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/description"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/descData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 

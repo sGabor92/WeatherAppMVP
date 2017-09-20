@@ -7,4 +7,6 @@
     <string name="min_temperature">Min. temperature:</string>
     <string name="wind_speed">Wind speed:</string>
     <string name="show_temperature">Show temperature</string>
+    <string name="description">Description:</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

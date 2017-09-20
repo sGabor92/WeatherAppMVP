@@ -14,10 +14,13 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import hu.webandmore.weatherappmvp.R;
+import hu.webandmore.weatherappmvp.app.WeatherApplication;
 import hu.webandmore.weatherappmvp.model.Location;
 
 public class MainActivity extends AppCompatActivity implements MainScreen {
@@ -46,14 +49,21 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
     private static String TAG = "MainActivity";
     private String location = "";
 
+    private PlaceAutocompleteFragment autocompleteFragment;
+
+    @Inject
+    MainPresenter presenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        WeatherApplication.injector.inject(this);
+
         ButterKnife.bind(this);
 
-        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
+        autocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
 
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
@@ -71,31 +81,44 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        assert autocompleteFragment.getView() != null;
+        ((EditText)autocompleteFragment.getView().findViewById(R.id.place_autocomplete_search_input)).setText(location);
+    }
+
     @OnClick(R.id.showWeatherBtn)
     public void getWeatherData(View view) {
-        MainPresenter.getInstance().showLocationWeather(location);
+        presenter.showLocationWeather(location);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        MainPresenter.getInstance().attachScreen(this);
+        presenter.attachScreen(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        MainPresenter.getInstance().detachScreen();
+        presenter.detachScreen();
     }
 
     @Override
     public void showWeather(Location location) {
         mWeatherDataView.setVisibility(View.VISIBLE);
         locationData.setText(location.getName());
-        currentTempData.setText(String.valueOf(location.getMain().getTemp()));
-        minTempData.setText(String.valueOf(location.getMain().getTemp_min()));
-        maxTempData.setText(String.valueOf(location.getMain().getTemp_max()));
-        windData.setText(String.valueOf(location.getWind().getSpeed()));
+
+        currentTempData.setText(String.format(getResources().getString(R.string.temp_with_param),
+                location.getMain().getTemp()));
+        minTempData.setText(String.format(getResources().getString(R.string.temp_with_param),
+                location.getMain().getTemp_min()));
+        maxTempData.setText(String.format(getResources().getString(R.string.temp_with_param),
+                location.getMain().getTemp_max()));
+        windData.setText(String.format(getResources().getString(R.string.wind_speed_with_param),
+                location.getWind().getSpeedInKm()));
         descData.setText(location.getWeather()[0].getDescription());
     }
 

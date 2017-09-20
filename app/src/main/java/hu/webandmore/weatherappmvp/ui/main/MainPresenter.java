@@ -14,21 +14,13 @@ import hu.webandmore.weatherappmvp.ui.Presenter;
 
 public class MainPresenter extends Presenter<MainScreen> {
 
-    private static MainPresenter instance = null;
     private Executor networkExecutor;
     private WeatherInteractor weatherInteractor;
     private Location prevResult;
 
-    private MainPresenter() {
+    public MainPresenter() {
         networkExecutor = Executors.newFixedThreadPool(1);
         weatherInteractor = new WeatherInteractor();
-    }
-
-    public static MainPresenter getInstance() {
-        if (instance == null) {
-            instance = new MainPresenter();
-        }
-        return instance;
     }
 
     @Override

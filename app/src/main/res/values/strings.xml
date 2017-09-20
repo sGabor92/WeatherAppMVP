@@ -9,4 +9,6 @@
     <string name="show_temperature">Show temperature</string>
     <string name="description">Description:</string>
     <string name="title_activity_maps">Map</string>
+    <string name="temp_with_param">%1$.2f °C</string>
+    <string name="wind_speed_with_param">%1$.2f km/h</string>
 </resources>

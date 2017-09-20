@@ -20,4 +20,8 @@ public class WindData {
     public void setDeg(double deg) {
         this.deg = deg;
     }
+
+    public double getSpeedInKm(){
+        return speed * 1.609344;
+    }
 }

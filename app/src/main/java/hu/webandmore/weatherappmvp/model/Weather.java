@@ -1,6 +1,6 @@
 package hu.webandmore.weatherappmvp.model;
 
-class Weather {
+public class Weather {
 
     private int id;
     private String main;

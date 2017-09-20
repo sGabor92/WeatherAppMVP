@@ -1,6 +1,6 @@
 package hu.webandmore.weatherappmvp.model;
 
-class CloudModel {
+public class CloudModel {
 
     private int all;
 

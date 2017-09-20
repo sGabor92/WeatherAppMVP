@@ -6,8 +6,8 @@ public class Location {
     private String name;
     private int code;
     private Coordination coord;
-    private Weather weather;
-    private TemperatureDate main;
+    private Weather[] weather;
+    private TemperatureData main;
     private WindData wind;
     private CloudModel clouds;
 
@@ -43,19 +43,19 @@ public class Location {
         this.coord = coord;
     }
 
-    public Weather getWeather() {
+    public Weather[] getWeather() {
         return weather;
     }
 
-    public void setWeather(Weather weather) {
+    public void setWeather(Weather[] weather) {
         this.weather = weather;
     }
 
-    public TemperatureDate getMain() {
+    public TemperatureData getMain() {
         return main;
     }
 
-    public void setMain(TemperatureDate main) {
+    public void setMain(TemperatureData main) {
         this.main = main;
     }
 

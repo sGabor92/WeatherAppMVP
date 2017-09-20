@@ -1,9 +1,9 @@
 package hu.webandmore.weatherappmvp.model;
 
-class WindData {
+public class WindData {
 
     private double speed;
-    private int deg;
+    private double deg;
 
     public double getSpeed() {
         return speed;
@@ -13,11 +13,11 @@ class WindData {
         this.speed = speed;
     }
 
-    public int getDeg() {
+    public double getDeg() {
         return deg;
     }
 
-    public void setDeg(int deg) {
+    public void setDeg(double deg) {
         this.deg = deg;
     }
 }

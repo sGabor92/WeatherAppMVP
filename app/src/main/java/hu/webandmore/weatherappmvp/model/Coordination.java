@@ -1,6 +1,6 @@
 package hu.webandmore.weatherappmvp.model;
 
-class Coordination {
+public class Coordination {
 
     private double lon;
     private double lat;

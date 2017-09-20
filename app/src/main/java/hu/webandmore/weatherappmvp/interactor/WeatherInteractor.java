@@ -2,6 +2,9 @@ package hu.webandmore.weatherappmvp.interactor;
 
 import org.greenrobot.eventbus.EventBus;
 
+import javax.inject.Inject;
+
+import hu.webandmore.weatherappmvp.app.WeatherApplication;
 import hu.webandmore.weatherappmvp.interactor.event.GetWeatherEvent;
 import hu.webandmore.weatherappmvp.model.Location;
 import hu.webandmore.weatherappmvp.network.NetworkConfig;
@@ -13,17 +16,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class WeatherInteractor {
 
-    private Retrofit retrofit;
-    private WeatherApi weatherApi;
+    @Inject
+    WeatherApi weatherApi;
 
     public WeatherInteractor() {
-        // Dagger would be very useful here!
-        retrofit = new Retrofit.Builder()
-                .baseUrl(NetworkConfig.ENDPOINT_ADDRESS)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        weatherApi = retrofit.create(
-                WeatherApi.class);
+        WeatherApplication.injector.inject(this);
     }
 
     public void getWeather(String city) {
